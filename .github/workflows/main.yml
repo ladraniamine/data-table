@@ -38,4 +38,4 @@ jobs:
         with:
           args: deploy --only hosting
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          GOOGLE_APPLICATION_CREDENTIALS: $HOME/amine/Downloads/coding-challenge-project-firebase-adminsdk-to31t-d83d397e13.json
