@@ -49,7 +49,7 @@ export default function TableComponent() {
           backgroundColor: "#fff",
           borderRadius: "15px",
           mt: "40px",
-          boxShadow: "-2px -1px 11px 15px #C9D1D917",
+          boxShadow: "0px 0px 44px -5px rgba(0,0,0,0.1)",
           overflow: "hidden",
         }}
       >
