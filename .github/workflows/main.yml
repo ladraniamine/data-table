@@ -21,6 +21,7 @@ jobs:
         with:
           name: dist
           path: dist
+
   deploy:
     name: Deploy
     needs: build
@@ -38,4 +39,5 @@ jobs:
         with:
           args: deploy --only hosting
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: $HOME/amine/Downloads/coding-challenge-project-firebase-adminsdk-to31t-d83d397e13.json
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SA_KEY }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
