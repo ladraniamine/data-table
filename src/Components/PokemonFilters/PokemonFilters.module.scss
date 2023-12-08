@@ -1,0 +1,17 @@
+.filtersContiner{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 15px;
+    border: 1px solid rgb(240, 240, 240);
+    box-shadow: 0px 0px 44px -5px rgba(0, 0, 0, 0.1);
+    padding: 20px 20px 5px 20px;
+}
+.inputsContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.powerText{
+    color: #333;
+}

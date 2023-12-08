@@ -1,0 +1,22 @@
+.inputContainer{
+    border-radius: 8px;
+    border: 1px solid rgb(227, 227, 227);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 48px;
+    padding: 0px 10px;
+    flex: 1;
+}
+.icon{
+    color: rgb(202, 202, 202);
+}
+.input{
+    all: unset;
+    height: 100%;
+    flex: 1;
+    color: #333;
+    &::placeholder{
+        color: rgb(180, 180, 180);
+    }
+}
