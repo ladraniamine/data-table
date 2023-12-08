@@ -1,27 +1,18 @@
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { FC } from "react";
+import { useContext } from "react";
+import { TableContext } from "../../../Context/TableContext";
+import { calculatePower } from "../../../Utils/Helpers";
 
-type TBodyRows = {
-  visibleRows: {
-    attack: number;
-    defense: number;
-    hp: number;
-    id: number;
-    name: string;
-    special_attack: number;
-    special_defense: number;
-    speed: number;
-    type: [];
-  }[];
-};
-const BodyRows: FC<TBodyRows> = ({ visibleRows }) => {
+const BodyRows = () => {
+  const { displayPage } = useContext(TableContext);
+
   return (
     <TableBody>
-      {visibleRows.map((row) => (
+      {displayPage.map((row) => (
         <TableRow
-          key={row.name}
+          key={row.id}
           sx={{
             "&:last-child td, &:last-child th": { border: 0 },
             "& .MuiTableCell-body": {
@@ -31,13 +22,14 @@ const BodyRows: FC<TBodyRows> = ({ visibleRows }) => {
         >
           <TableCell align="center">{row.id}</TableCell>
           <TableCell align="center">{row.name}</TableCell>
-          <TableCell align="center">{row.type}</TableCell>
+          <TableCell align="center">{row.type.join(",")}</TableCell>
           <TableCell align="center">{row.hp}</TableCell>
           <TableCell align="center">{row.attack}</TableCell>
           <TableCell align="center">{row.defense}</TableCell>
           <TableCell align="center">{row.special_attack}</TableCell>
           <TableCell align="center">{row.special_defense}</TableCell>
           <TableCell align="center">{row.speed}</TableCell>
+          <TableCell align="center">{calculatePower(row)}</TableCell>
         </TableRow>
       ))}
     </TableBody>

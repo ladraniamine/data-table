@@ -20,6 +20,7 @@ const HeadRow = () => {
         <TableCell align="center">special_attack</TableCell>
         <TableCell align="center">special_defense</TableCell>
         <TableCell align="center">speed</TableCell>
+        <TableCell align="center">power</TableCell>
       </TableRow>
     </TableHead>
   );
