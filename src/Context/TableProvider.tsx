@@ -9,34 +9,22 @@ import {
   filterByName,
   filterByPowerThreshold,
 } from "../Utils/Helpers";
+import UsePokemon from "../Hooks/UsePokemon";
 
 export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
+  const { fetchData } = UsePokemon();
   const [data, setData] = useState<Trow[]>([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [searchByName, setSearchByName] = useState<string>("");
   const [searchPowerThreshold, setSearchPowerThreshold] = useState<number>(0);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const url =
-        "https://raw.githubusercontent.com/legal-doctrine/frontend-LD-starter/main/public/pokemon.json";
-
-      try {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const data = await response.json();
-        setData(data);
-      } catch (error) {
-        console.error("Fetch error:", error);
-      }
-    };
-    fetchData();
-  }, []);
+    if (!isFirstLoad) return;
+    fetchData(setData);
+    setIsFirstLoad(false);
+  }, [fetchData, isFirstLoad]);
 
   const handleChangePage = (_: unknown, newPage: number) => setPage(newPage);
 
