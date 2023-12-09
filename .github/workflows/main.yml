@@ -34,10 +34,11 @@ jobs:
         with:
           name: public
           path: public
-      - name: Checkout Repo
+      - name: install node js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Install Firebase Tools
         run: npm install -g firebase-tools
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
