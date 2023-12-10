@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Trow } from "../Context/Types/TableTypes";
+import { Trow } from "../Types/Types";
 
 const UsePokemon = () => {
   const [loading, setLoading] = useState(false);

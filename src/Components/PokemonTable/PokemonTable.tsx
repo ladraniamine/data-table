@@ -1,36 +1,17 @@
 import Table from "@mui/material/Table";
-import { TablePagination } from "@mui/material";
-import { useContext } from "react";
-import BodyRows from "./SubComponent/BodyRows";
-import HeadRow from "./SubComponent/HeadRow";
+import BodyRows from "./SubComponent/BodyRows/BodyRows";
+import PokemonHeadRow from "./SubComponent/HeaderRow/PokemonHeadRow";
 import classes from "./PokemonTable.module.scss";
-import { TableContext } from "../../Context/TableContext";
+import TablePaginationContainer from "./SubComponent/TablePaginationContainer";
 
 export default function PokemonTable() {
-  const {
-    totalNumberOfRows,
-    handleChangePage,
-    handleChangeRowsPerPage,
-    rowsPerPage,
-    page,
-  } = useContext(TableContext);
-
   return (
     <div>
       <Table className={classes.table}>
-        <HeadRow />
+        <PokemonHeadRow />
         <BodyRows />
       </Table>
-      <TablePagination
-        rowsPerPageOptions={[10, 20, 30]}
-        sx={{ mt: "15px" }}
-        component="div"
-        count={totalNumberOfRows}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+      <TablePaginationContainer />
     </div>
   );
 }

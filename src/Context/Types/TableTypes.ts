@@ -1,4 +1,5 @@
 import { ChangeEvent, ReactNode } from "react";
+import { Trow } from "../../Types/Types";
 
 export type TableContextType = {
     totalNumberOfRows: number
@@ -16,17 +17,3 @@ export type TableContextType = {
  export type TableProviderProps = {
     children: ReactNode;
   };
-  
-  //move to extra file
-export  type Trow = {
-    attack: number;
-    defense: number;
-    hp: number;
-    id: number;
-    name: string;
-    special_attack: number;
-    special_defense: number;
-    speed: number;
-    type: [string];
-  };
-  

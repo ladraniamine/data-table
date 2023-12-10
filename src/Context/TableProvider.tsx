@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
-import { TableContextType, TableProviderProps, Trow } from "./Types/TableTypes";
+import { TableContextType, TableProviderProps } from "./Types/TableTypes";
 import { TableContext } from "./TableContext";
 import {
   calculatAllPowers,
@@ -10,13 +10,14 @@ import {
   filterByPowerThreshold,
 } from "../Utils/Helpers";
 import UsePokemon from "../Hooks/UsePokemon";
+import { Trow } from "../Types/Types";
 
 export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
   const { fetchData } = UsePokemon();
   const [data, setData] = useState<Trow[]>([]);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [page, setPage] = useState(0);
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
+  const [page, setPage] = useState<number>(0);
+  const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
   const [searchByName, setSearchByName] = useState<string>("");
   const [searchPowerThreshold, setSearchPowerThreshold] = useState<number>(0);
 
