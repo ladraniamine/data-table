@@ -1,4 +1,4 @@
-import { Trow } from "../Context/Types/TableTypes"
+import { Trow } from "../Types/Types"
 
 export function calculatePower (row: Trow){
     const { hp,attack,defense,special_attack,special_defense,speed} = row
