@@ -1,6 +1,6 @@
 import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, memo } from "react";
 import classes from "./InputController.module.scss";
 
 type TInputController = {
@@ -10,11 +10,11 @@ type TInputController = {
   placeholder: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
-const InputController: FC<TInputController> = ({
+function InputController({
   IconOfInput,
   placeholder,
   onChange,
-}) => {
+}: TInputController) {
   return (
     <div className={classes.inputContainer}>
       <IconOfInput className={classes.icon} />
@@ -26,6 +26,6 @@ const InputController: FC<TInputController> = ({
       />
     </div>
   );
-};
-
-export default InputController;
+}
+const MemomizedInputController = memo(InputController);
+export default MemomizedInputController;

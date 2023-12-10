@@ -12,5 +12,6 @@ const initialState = {
     handleSearchPowerThreshold: (): void => {},
     maxPower: 0,
     minPower: 0,
+    loading: true
   };
 export const TableContext = createContext<TableContextType>(initialState);

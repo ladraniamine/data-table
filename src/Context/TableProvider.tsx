@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
 import { TableContextType, TableProviderProps } from "./Types/TableTypes";
 import { TableContext } from "./TableContext";
 import {
@@ -12,8 +12,8 @@ import {
 import UsePokemon from "../Hooks/UsePokemon";
 import { Trow } from "../Types/Types";
 
-export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
-  const { fetchData } = UsePokemon();
+function TableProvider({ children }: TableProviderProps) {
+  const { fetchData, loading } = UsePokemon();
   const [data, setData] = useState<Trow[]>([]);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [page, setPage] = useState<number>(0);
@@ -27,24 +27,28 @@ export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
     setIsFirstLoad(false);
   }, [fetchData, isFirstLoad]);
 
-  const handleChangePage = (_: unknown, newPage: number) => setPage(newPage);
+  const handleChangePage = useCallback(
+    (_: unknown, newPage: number) => setPage(newPage),
+    [],
+  );
 
-  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+  const handleChangeRowsPerPage = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setRowsPerPage(parseInt(event.target.value, 10));
+      setPage(0);
+    },
+    [],
+  );
+  const handleSearchByName = useCallback((value: string) => {
     setPage(0);
-  };
+    setSearchByName(value);
+  }, []);
 
-  const handleSearchByName = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearchPowerThreshold = useCallback((value: string) => {
     setPage(0);
-    setSearchByName(e.target.value);
-  };
-
-  const handleSearchPowerThreshold = (e: ChangeEvent<HTMLInputElement>) => {
-    setPage(0);
-    const { value } = e.target;
     if (isNaN(parseInt(value))) return;
     setSearchPowerThreshold(parseInt(value));
-  };
+  }, []);
 
   const SearchByNameResualt = useMemo(() => {
     if (searchByName === "") return data;
@@ -92,6 +96,7 @@ export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
     handleSearchPowerThreshold,
     maxPower,
     minPower,
+    loading,
   };
 
   return (
@@ -99,4 +104,6 @@ export const TableProvider: React.FC<TableProviderProps> = ({ children }) => {
       {children}
     </TableContext.Provider>
   );
-};
+}
+
+export default TableProvider;

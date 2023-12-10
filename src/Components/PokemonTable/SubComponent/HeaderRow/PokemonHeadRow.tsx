@@ -9,9 +9,9 @@ const rowStyle = {
   backgroundColor: "#F4F6F8",
 };
 
-const PokemonHeadRow = () => {
+function PokemonHeadRow() {
   return (
-    <TableHead>
+    <TableHead component="thead">
       <TableRow sx={rowStyle}>
         {headerCellData.map((lable) => (
           <TableCell align="center" key={lable}>
@@ -21,6 +21,6 @@ const PokemonHeadRow = () => {
       </TableRow>
     </TableHead>
   );
-};
+}
 
 export default PokemonHeadRow;

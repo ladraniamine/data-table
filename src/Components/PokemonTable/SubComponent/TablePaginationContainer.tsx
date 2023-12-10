@@ -1,11 +1,11 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { TableContext } from "../../../Context/TableContext";
 import { TablePagination } from "@mui/material";
 
 const rowsPerPageOptions = [10, 20, 30];
-const TablePaginationStyle = { mt: "15px" };
+const TablePaginationStyle = { mt: "0.9375rem" };
 
-const TablePaginationContainer = () => {
+function TablePaginationContainer() {
   const {
     totalNumberOfRows,
     handleChangePage,
@@ -25,6 +25,7 @@ const TablePaginationContainer = () => {
       onRowsPerPageChange={handleChangeRowsPerPage}
     />
   );
-};
+}
 
-export default TablePaginationContainer;
+const MemomizedTablePaginationContainer = memo(TablePaginationContainer);
+export default MemomizedTablePaginationContainer;

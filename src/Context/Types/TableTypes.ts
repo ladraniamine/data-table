@@ -8,10 +8,11 @@ export type TableContextType = {
     handleChangePage: (_: unknown, newPage: number) => void
     rowsPerPage: number
     page: number
-    handleSearchByName: (e: ChangeEvent<HTMLInputElement>) => void
-    handleSearchPowerThreshold: (e: ChangeEvent<HTMLInputElement>) => void
+    handleSearchByName: (value:string) => void
+    handleSearchPowerThreshold: (value:string) => void
     maxPower: number
     minPower: number
+    loading: boolean
   };
   
  export type TableProviderProps = {
